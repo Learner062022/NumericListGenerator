@@ -1,13 +1,15 @@
 from random import randrange
-
+from typing import Optional
 
 class ScoreGenerator:
 
-    scores: list = []
-    score = None
-
-    def generate_scores(self, num: int):
-        while len(self.scores) != num - 1:
-            self.score = randrange(num)
-            if self.score not in self.scores:
-                self.scores.append(self.score)
+    def generate_scores(self, num: int) -> Optional[list[int]]:
+        scores: list[int] = []
+        if num >= 2:
+            while len(scores) != num:
+                score = randrange(num)
+                if score not in scores:
+                    scores.append(score)
+                    return scores
+        else:
+            return
